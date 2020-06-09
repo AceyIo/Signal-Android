@@ -212,8 +212,6 @@
 
         <intent-filter>
             <action android:name="android.intent.action.MAIN" />
-            <category android:name="android.intent.category.LAUNCHER" />
-            <category android:name="android.intent.category.MULTIWINDOW_LAUNCHER" />
         </intent-filter>
 
         <meta-data android:name="com.sec.minimode.icon.portrait.normal"
@@ -222,6 +220,14 @@
                    android:resource="@mipmap/ic_launcher" />
 
     </activity-alias>
+
+    <activity android:name=".SplashScreen" android:theme="@style/SplashTheme">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+                <category android:name="android.intent.category.MULTIWINDOW_LAUNCHER" />
+            </intent-filter>
+        </activity>
 
     <activity android:name=".conversation.ConversationActivity"
               android:windowSoftInputMode="stateUnchanged"

@@ -448,4 +448,9 @@
         <item name="cardElevation">0.5dp</item>
         <item name="cardBackgroundColor">?android:attr/windowBackground</item>
     </style>
+
+    <style name="SplashTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:background">@drawable/launch_screen</item>
+    </style>
+
 </resources>

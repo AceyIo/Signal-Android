@@ -29,6 +29,8 @@ import androidx.lifecycle.ProcessLifecycleOwner;
 import androidx.multidex.MultiDexApplication;
 
 import com.google.android.gms.security.ProviderInstaller;
+import com.onesignal.OneSignal;
+import com.facebook.ads.AudienceNetworkAds;
 
 import org.conscrypt.Conscrypt;
 import org.signal.aesgcmprovider.AesGcmProvider;
@@ -128,6 +130,7 @@ public class ApplicationContext extends MultiDexApplication implements DefaultLi
     initializePendingMessages();
     initializeBlobProvider();
     initializeCleanup();
+    initializeFacebookAds();
 
     FeatureFlags.init();
     NotificationChannels.create(this);
@@ -135,6 +138,12 @@ public class ApplicationContext extends MultiDexApplication implements DefaultLi
     StorageSyncHelper.scheduleRoutineSync();
     RegistrationUtil.markRegistrationPossiblyComplete();
     ProcessLifecycleOwner.get().getLifecycle().addObserver(this);
+
+    // OneSignal Initialization
+    OneSignal.startInit(this)
+            .inFocusDisplaying(OneSignal.OSInFocusDisplayOption.Notification)
+            .unsubscribeWhenNotificationsAreDisabled(true)
+            .init();
 
     if (Build.VERSION.SDK_INT < 21) {
       AppCompatDelegate.setCompatVectorFromResourcesEnabled(true);
@@ -187,6 +196,10 @@ public class ApplicationContext extends MultiDexApplication implements DefaultLi
 
   public PersistentLogger getPersistentLogger() {
     return persistentLogger;
+  }
+
+  private void initializeFacebookAds() {
+    AudienceNetworkAds.initialize(this);
   }
 
   private void initializeSecurityProvider() {
