@@ -28,7 +28,7 @@ import java.util.Map;
  * Migrations are performed via {@link MigrationJob}s. These jobs are durable and are run before any
  * other job, allowing you to schedule safe migrations. Furthermore, you may specify that a
  * migration is UI-blocking, at which point we will show a spinner via
- * {@link ApplicationMigrationActivity} if the user opens the app while the migration is in
+
  * progress.
  */
 public class ApplicationMigrations {

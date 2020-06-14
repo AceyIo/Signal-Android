@@ -17,7 +17,6 @@ import org.thoughtcrime.securesms.jobs.PushNotificationReceiveJob;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.lock.v2.CreateKbsPinActivity;
 import org.thoughtcrime.securesms.logging.Log;
-import org.thoughtcrime.securesms.migrations.ApplicationMigrationActivity;
 import org.thoughtcrime.securesms.migrations.ApplicationMigrations;
 import org.thoughtcrime.securesms.pin.PinRestoreActivity;
 import org.thoughtcrime.securesms.profiles.edit.EditProfileActivity;
@@ -155,7 +154,6 @@ public abstract class PassphraseRequiredActionBarActivity extends BaseActionBarA
     switch (state) {
       case STATE_CREATE_PASSPHRASE:   return getCreatePassphraseIntent();
       case STATE_PROMPT_PASSPHRASE:   return getPromptPassphraseIntent();
-      case STATE_UI_BLOCKING_UPGRADE: return getUiBlockingUpgradeIntent();
       case STATE_WELCOME_PUSH_SCREEN: return getPushRegistrationIntent();
       case STATE_ENTER_SIGNAL_PIN:    return getEnterSignalPinIntent();
       case STATE_CREATE_SIGNAL_PIN:   return getCreateSignalPinIntent();
@@ -198,13 +196,6 @@ public abstract class PassphraseRequiredActionBarActivity extends BaseActionBarA
 
   private Intent getPromptPassphraseIntent() {
     return getRoutedIntent(PassphrasePromptActivity.class, getIntent());
-  }
-
-  private Intent getUiBlockingUpgradeIntent() {
-    return getRoutedIntent(ApplicationMigrationActivity.class,
-                           TextSecurePreferences.hasPromptedPushRegistration(this)
-                               ? getConversationListIntent()
-                               : getPushRegistrationIntent());
   }
 
   private Intent getPushRegistrationIntent() {

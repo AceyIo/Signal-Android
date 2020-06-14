@@ -17,8 +17,9 @@
     <!-- AlbumThumbnailView -->
     <string name="AlbumThumbnailView_plus" translatable="false">\+%d</string>
 
-    <!-- ApplicationMigrationActivity -->
-    <string name="ApplicationMigrationActivity__signal_is_updating">Signal is updating…</string>
+    <!-- ApplicationMigrationActivity
+    <string name="ApplicationMigrationActivity__signal_is_updating">applicSignal is updating…</string>
+    -->
 
     <!-- ApplicationPreferencesActivity -->
     <string name="ApplicationPreferencesActivity_currently_s">Currently: %s</string>

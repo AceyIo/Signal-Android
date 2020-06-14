@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (C) 2019 Open Whisper Systems
  *
  * This program is free software: you can redistribute it and/or modify
@@ -13,7 +13,7 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- */
+ *
 
 package org.thoughtcrime.securesms.migrations;
 
@@ -23,10 +23,10 @@ import org.thoughtcrime.securesms.BaseActivity;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.logging.Log;
 
-/**
+*
  * An activity that can be shown to block access to the rest of the app when a long-running or
  * otherwise blocking application-level migration is happening.
- */
+
 public class ApplicationMigrationActivity extends BaseActivity {
 
   private static final String TAG = Log.tag(ApplicationMigrationActivity.class);
@@ -51,3 +51,4 @@ public class ApplicationMigrationActivity extends BaseActivity {
     });
   }
 }
+***/

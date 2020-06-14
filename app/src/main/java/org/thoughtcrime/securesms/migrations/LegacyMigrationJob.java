@@ -39,7 +39,7 @@ import java.io.IOException;
 import java.util.List;
 
 /**
- * Represents all of the migrations that used to take place in {@link ApplicationMigrationActivity}
+ *
  * (previously known as DatabaseUpgradeActivity). This job should *never* have new versions or
  * migrations added to it. Instead, create a new {@link MigrationJob} and place it in
  * {@link ApplicationMigrations}.
