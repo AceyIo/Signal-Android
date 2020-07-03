@@ -110,10 +110,11 @@ public class ApplicationContext extends MultiDexApplication implements DefaultLi
 
   @Override
   public void onCreate() {
+    long startTime = System.currentTimeMillis();
     super.onCreate();
-    Log.i(TAG, "onCreate()");
     initializeSecurityProvider();
     initializeLogging();
+    Log.i(TAG, "onCreate()");
     initializeCrashHandling();
     initializeAppDependencies();
     initializeFirstEverAppLaunch();
@@ -152,6 +153,7 @@ public class ApplicationContext extends MultiDexApplication implements DefaultLi
     }
 
     ApplicationDependencies.getJobManager().beginJobLoop();
+    Log.d(TAG, "onCreate() took " + (System.currentTimeMillis() - startTime) + " ms");
   }
 
   @Override

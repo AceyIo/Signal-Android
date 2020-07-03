@@ -84,6 +84,7 @@ protobuf {
     }
 }
 
+
 def canonicalVersionCode = 500
 def canonicalVersionName = "1.4.9"
 
@@ -318,7 +319,7 @@ dependencies {
 
     implementation 'org.signal:argon2:13.1@aar'
 
-    implementation 'org.signal:ringrtc-android:2.1.1'
+    implementation 'org.signal:ringrtc-android:2.2.0'
 
     implementation "me.leolin:ShortcutBadger:1.1.16"
     implementation 'se.emilsjolander:stickylistheaders:2.7.0'
