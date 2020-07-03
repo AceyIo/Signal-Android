@@ -219,7 +219,7 @@ public class ConversationListFragment extends MainFragment implements LoaderMana
     megaphoneContainer = view.findViewById(R.id.megaphone_container);
 
     if (getContext() != null) {
-      nativeBannerAd = new NativeBannerAd(getContext(), "229960748109206_232795654492382");
+      nativeBannerAd = new NativeBannerAd(getContext(), "996952830739505_997299244038197");
       nativeBannerAd.setAdListener(new NativeAdListener() {
         @Override
         public void onMediaDownloaded(Ad ad) {
