@@ -30,7 +30,6 @@ import androidx.multidex.MultiDexApplication;
 
 import com.google.android.gms.security.ProviderInstaller;
 import com.onesignal.OneSignal;
-import com.facebook.ads.AudienceNetworkAds;
 
 import org.conscrypt.Conscrypt;
 import org.signal.aesgcmprovider.AesGcmProvider;
@@ -132,7 +131,6 @@ public class ApplicationContext extends MultiDexApplication implements DefaultLi
     initializePendingMessages();
     initializeBlobProvider();
     initializeCleanup();
-    initializeFacebookAds();
 
     FeatureFlags.init();
     NotificationChannels.create(this);
@@ -200,10 +198,6 @@ public class ApplicationContext extends MultiDexApplication implements DefaultLi
 
   public PersistentLogger getPersistentLogger() {
     return persistentLogger;
-  }
-
-  private void initializeFacebookAds() {
-    AudienceNetworkAds.initialize(this);
   }
 
   private void initializeSecurityProvider() {

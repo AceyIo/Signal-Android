@@ -302,7 +302,6 @@ dependencies {
         exclude group: 'com.google.firebase', module: 'firebase-measurement-connector'
     }
 
-    implementation 'com.facebook.android:audience-network-sdk:5.9.0'
     implementation 'com.onesignal:OneSignal:[3.13.0, 3.99.99]'
 
     implementation 'com.google.android.gms:play-services-maps:16.1.0'
