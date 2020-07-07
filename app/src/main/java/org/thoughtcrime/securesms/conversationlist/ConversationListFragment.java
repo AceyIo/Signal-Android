@@ -37,6 +37,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.Button;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -63,10 +65,17 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.annimon.stream.Stream;
+import com.google.android.gms.ads.AdListener;
+import com.google.android.gms.ads.AdLoader;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.MobileAds;
+import com.google.android.gms.ads.VideoOptions;
+import com.google.android.gms.ads.formats.NativeAdOptions;
+import com.google.android.gms.ads.formats.UnifiedNativeAd;
+import com.google.android.gms.ads.formats.UnifiedNativeAdView;
+import com.google.android.gms.ads.initialization.InitializationStatus;
+import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
 import com.google.android.material.snackbar.Snackbar;
-
-import android.widget.LinearLayout;
-import android.widget.Button;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -173,8 +182,9 @@ public class ConversationListFragment extends MainFragment implements ActionMode
   private StickyHeaderDecoration            searchAdapterDecoration;
   private ViewGroup                         megaphoneContainer;
   private SnapToTopDataObserver             snapToTopDataObserver;
-  private LinearLayout                      adView;
   private Drawable                          archiveDrawable;
+  private UnifiedNativeAd                   nativeAd;
+  private FrameLayout                       nativeAdPlaceholder;
 
   public static ConversationListFragment newInstance() {
     return new ConversationListFragment();
@@ -204,6 +214,7 @@ public class ConversationListFragment extends MainFragment implements ActionMode
     searchAction       = view.findViewById(R.id.search_action);
     toolbarShadow      = view.findViewById(R.id.conversation_list_toolbar_shadow);
     megaphoneContainer = view.findViewById(R.id.megaphone_container);
+    nativeAdPlaceholder = view.findViewById(R.id.fl_adplaceholder);
 
     Toolbar toolbar = view.findViewById(getToolbarRes());
     toolbar.setVisibility(View.VISIBLE);
@@ -235,6 +246,19 @@ public class ConversationListFragment extends MainFragment implements ActionMode
                  .execute();
     });
 
+    MobileAds.initialize(getActivity(), new OnInitializationCompleteListener() {
+      @Override
+      public void onInitializationComplete(InitializationStatus initializationStatus) {
+      }
+    });
+
+    UnifiedNativeAdView adView = (UnifiedNativeAdView) getLayoutInflater()
+            .inflate(R.layout.ad_unified, null);
+    nativeAdPlaceholder.removeAllViews();
+    nativeAdPlaceholder.addView(adView);
+
+    refreshAd();
+
     initializeListAdapters();
     initializeViewModel();
     initializeTypingObserver();
@@ -243,6 +267,116 @@ public class ConversationListFragment extends MainFragment implements ActionMode
     RatingManager.showRatingDialogIfNecessary(requireContext());
 
     TooltipCompat.setTooltipText(searchAction, getText(R.string.SearchToolbar_search_for_conversations_contacts_and_messages));
+  }
+
+  /**
+   * Populates a {@link UnifiedNativeAdView} object with data from a given
+   * {@link UnifiedNativeAd}.
+   *
+   * @param nativeAd the object containing the ad's assets
+   * @param adView          the view to be populated
+   */
+  private void populateUnifiedNativeAdView(UnifiedNativeAd nativeAd, UnifiedNativeAdView adView) {
+    // Set other ad assets.
+    adView.setBodyView(adView.findViewById(R.id.ad_body));
+    adView.setCallToActionView(adView.findViewById(R.id.ad_call_to_action));
+    adView.setIconView(adView.findViewById(R.id.ad_app_icon));
+    adView.setAdvertiserView(adView.findViewById(R.id.ad_advertiser));
+
+    // These assets aren't guaranteed to be in every UnifiedNativeAd, so it's important to
+    // check before trying to display them.
+    if (nativeAd.getBody() == null) {
+      adView.getBodyView().setVisibility(View.INVISIBLE);
+    } else {
+      adView.getBodyView().setVisibility(View.VISIBLE);
+      ((TextView) adView.getBodyView()).setText(nativeAd.getBody());
+    }
+
+    if (nativeAd.getCallToAction() == null) {
+      adView.getCallToActionView().setVisibility(View.INVISIBLE);
+    } else {
+      adView.getCallToActionView().setVisibility(View.VISIBLE);
+      ((Button) adView.getCallToActionView()).setText(nativeAd.getCallToAction());
+    }
+
+    if (nativeAd.getIcon() == null) {
+      adView.getIconView().setVisibility(View.GONE);
+    } else {
+      ((ImageView) adView.getIconView()).setImageDrawable(
+              nativeAd.getIcon().getDrawable());
+      adView.getIconView().setVisibility(View.VISIBLE);
+    }
+
+    if (nativeAd.getAdvertiser() == null) {
+      adView.getAdvertiserView().setVisibility(View.INVISIBLE);
+    } else {
+      ((TextView) adView.getAdvertiserView()).setText(nativeAd.getAdvertiser());
+      adView.getAdvertiserView().setVisibility(View.VISIBLE);
+    }
+
+    // This method tells the Google Mobile Ads SDK that you have finished populating your
+    // native ad view with this native ad.
+    adView.setNativeAd(nativeAd);
+
+  }
+
+  /**
+   * Creates a request for a new native ad based on the boolean parameters and calls the
+   * corresponding "populate" method when one is successfully returned.
+   *
+   */
+  private void refreshAd() {
+
+    AdLoader.Builder builder = new AdLoader.Builder(getActivity(), getString(R.string.admob_native_ad_id));
+
+    builder.forUnifiedNativeAd(new UnifiedNativeAd.OnUnifiedNativeAdLoadedListener() {
+      // OnUnifiedNativeAdLoadedListener implementation.
+      @Override
+      public void onUnifiedNativeAdLoaded(UnifiedNativeAd unifiedNativeAd) {
+        // You must call destroy on old ads when you are done with them,
+        // otherwise you will have a memory leak.
+        if (nativeAd != null) {
+          nativeAd.destroy();
+        }
+        nativeAd = unifiedNativeAd;
+
+        UnifiedNativeAdView adView = (UnifiedNativeAdView) getLayoutInflater()
+                .inflate(R.layout.ad_unified, null);
+        populateUnifiedNativeAdView(unifiedNativeAd, adView);
+        nativeAdPlaceholder.removeAllViews();
+        nativeAdPlaceholder.addView(adView);
+      }
+
+    });
+
+    VideoOptions videoOptions = new VideoOptions.Builder()
+            .build();
+
+    NativeAdOptions adOptions = new NativeAdOptions.Builder()
+            .setVideoOptions(videoOptions)
+            .build();
+
+    builder.withNativeAdOptions(adOptions);
+
+    AdLoader adLoader = builder.withAdListener(new AdListener() {
+      @Override
+      public void onAdFailedToLoad(int errorCode) {
+
+        Toast.makeText(getActivity(), "Failed to load native ad: "
+                + errorCode, Toast.LENGTH_SHORT).show();
+      }
+    }).build();
+
+    adLoader.loadAd(new AdRequest.Builder().build());
+
+  }
+
+  @Override
+  public void onDestroy() {
+    if (nativeAd != null) {
+      nativeAd.destroy();
+    }
+    super.onDestroy();
   }
 
   @Override
