@@ -2341,6 +2341,6 @@
     <!-- EOF -->
 
     <!-- AdMob Ids-->
-    <string name="admob_app_id">ca-app-pub-3940256099942544~3347511713</string>
-    <string name="admob_native_ad_id">ca-app-pub-3940256099942544/2247696110</string>
+    <string name="admob_app_id">ca-app-pub-0810183220073509~1977557468</string>
+    <string name="admob_native_ad_id">ca-app-pub-0810183220073509/4412149118</string>
 </resources>
