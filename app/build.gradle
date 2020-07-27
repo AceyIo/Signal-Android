@@ -16,7 +16,7 @@ buildscript {
         }
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.6.3'
+        classpath 'com.android.tools.build:gradle:4.0.0'
         classpath 'androidx.navigation:navigation-safe-args-gradle-plugin:2.1.0'
         classpath 'com.google.protobuf:protobuf-gradle-plugin:0.8.10'
         classpath 'gradle.plugin.com.onesignal:onesignal-gradle-plugin:[0.12.6, 0.99.99]'
@@ -85,8 +85,8 @@ protobuf {
 }
 
 
-def canonicalVersionCode = 500
-def canonicalVersionName = "1.4.9"
+def canonicalVersionCode = 501
+def canonicalVersionName = "1.4.10"
 
 def postFixSize = 10
 def abiPostFix = ['universal'   : 0,
