@@ -162,7 +162,7 @@ public abstract class PassphraseRequiredActivity extends BaseActivity implements
   }
 
   private boolean userMustCreateSignalPin() {
-    return !SignalStore.registrationValues().isRegistrationComplete() && !SignalStore.kbsValues().hasPin() && !SignalStore.kbsValues().lastPinCreateFailed();
+    return !SignalStore.registrationValues().isRegistrationComplete() && !SignalStore.kbsValues().hasPin() && !SignalStore.kbsValues().lastPinCreateFailed() && !SignalStore.kbsValues().hasOptedOut();
   }
 
   private boolean userMustSetProfileName() {

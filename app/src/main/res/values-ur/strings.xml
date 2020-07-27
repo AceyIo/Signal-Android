@@ -43,6 +43,7 @@
   <string name="ApplicationPreferencesActivity_sms_mms_summary">ایس ایم ایس %1$s، ایم ایم ایس %2$s</string>
   <string name="ApplicationPreferencesActivity_privacy_summary">سکرین لاک%1$s،رجسٹریشن لاک%2$s</string>
   <string name="ApplicationPreferencesActivity_appearance_summary">موضوع%1$s، زبان%2$s</string>
+  <string name="ApplicationPreferencesActivity_pin_created">پن تیار کیا گیا۔</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
     <item quantity="one">%dمنٹس</item>
@@ -174,11 +175,11 @@
   <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">یہ ڈیوائس ڈائل سرگرمیوں کی تائید کو ظاہر نہیں کر رہی۔</string>
   <string name="ConversationActivity_leave_group">گروپ چھوڑنا ہے؟</string>
   <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">کیا آپ واقعی اس گروپ کو چھوڑنا چاہتے ہیں؟</string>
+  <string name="ConversationActivity_choose_new_admin">نیا ایڈمن منتخب کریں</string>
   <string name="ConversationActivity_transport_insecure_sms">غیر محفوظ ایس ایم ایس</string>
   <string name="ConversationActivity_transport_insecure_mms">غیر محفوظ ایم ایم ایس</string>
   <string name="ConversationActivity_transport_signal">Signal</string>
   <string name="ConversationActivity_lets_switch_to_signal">چلیں Signal کو چلاتے ہیں%1$s</string>
-  <string name="ConversationActivity_error_leaving_group">گروپ چھوڑنے میں غلطی ہو رہی ہے</string>
   <string name="ConversationActivity_specify_recipient">براۓ مہربانی رابطہ منتخب کریں</string>
   <string name="ConversationActivity_unblock_this_contact_question">اس رابطہ کو ان بلاک کریں؟</string>
   <string name="ConversationActivity_unblock_this_group_question">اس گروپ کو ان بلاک کریں؟</string>
@@ -341,6 +342,9 @@
   <string name="GiphyFragmentPagerAdapter_gifs">GIFs</string>
   <string name="GiphyFragmentPagerAdapter_stickers">اسٹیکرز</string>
   <!--AddToGroupActivity-->
+  <!--ChooseNewAdminActivity-->
+  <string name="ChooseNewAdminActivity_choose_new_admin">نیا ایڈمن منتخب کریں</string>
+  <string name="ChooseNewAdminActivity_done">ہو گیا</string>
   <!--GroupShareProfileView-->
   <string name="GroupShareProfileView_share_your_profile_name_and_photo_with_this_group">پروفائل نام اور تصویر اس گروپ کے ساتھ اشتراک کریں؟</string>
   <string name="GroupShareProfileView_do_you_want_to_make_your_profile_name_and_photo_visible_to_all_current_and_future_members_of_this_group">کیا آپ اپنی پروفائل کا نام اور تصویر اس گروپ کے تمام موجودہ اور مستقبل کے اراکین کو دیکھانا چاہتے ہیں؟</string>
@@ -348,6 +352,8 @@
   <!--GroupMembersDialog-->
   <string name="GroupMembersDialog_you">آپ</string>
   <!--GV2 access levels-->
+  <!--GV2 invites sent-->
+  <string name="GroupManagement_learn_more">مزید پڑھیں</string>
   <!--PendingMembersActivity-->
   <string name="PendingMembersActivity_people_you_invited">جن لوگوں کو آپ نے مدعو کیا</string>
   <string name="PendingMembersActivity_invites_by_other_group_members">گروپ کے دوسرے ممبروں کے ذریعہ دعوت نامے</string>
@@ -361,12 +367,12 @@
   <string name="AddGroupDetailsFragment__remove">ہٹا دیں</string>
   <!--ManageGroupActivity-->
   <string name="ManageGroupActivity_disappearing_messages">پیغامات غائب ہو رہے ہیں</string>
+  <string name="ManageGroupActivity_add_members">اراکین شامل کریں</string>
   <string name="ManageGroupActivity_leave_group">گروپ چھوڑ دیں</string>
   <string name="ManageGroupActivity_mute_notifications">خاموش اطلاعات</string>
   <string name="ManageGroupActivity_custom_notifications">اپنی مرضی کے مطابق اطلاعات</string>
   <string name="ManageGroupActivity_off">بند کریں</string>
   <string name="ManageGroupActivity_on">چلائیں</string>
-  <string name="ManageGroupActivity_add_members">اراکین شامل کریں</string>
   <string name="ManageGroupActivity_view_all_members">تمام ممبروں کو دیکھیں</string>
   <string name="ManageGroupActivity_none">کوئی نہیں</string>
   <!--ManageRecipientActivity-->
@@ -527,6 +533,7 @@
   <string name="MessageRecord_s_disabled_disappearing_messages">%1$sپیغامات غیر فعال ہو رہے ہیں۔</string>
   <string name="MessageRecord_you_set_disappearing_message_time_to_s">آپ غائب پیغام ٹائمر کو %1$sمیں ترتیب دے رہے ہیں۔</string>
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$sغائب پیغام ٹائمر کو %2$sمیں ترتیب دے رہے ہیں۔</string>
+  <!--Profile change updates-->
   <!--GV2 specific-->
   <string name="MessageRecord_you_created_the_group">آپ نے گروپ بنایا ہے۔</string>
   <string name="MessageRecord_group_updated">گروپ کی تجدید ہوئی۔</string>
@@ -535,8 +542,11 @@
   <string name="MessageRecord_s_joined_the_group">%1$sگروپ میں شامل ہوئے۔</string>
   <!--GV2 member removals-->
   <!--GV2 role change-->
+  <string name="MessageRecord_you_are_now_an_admin">اب آپ ایڈمن ہیں۔</string>
   <!--GV2 invitations-->
+  <string name="MessageRecord_you_were_invited_to_the_group">آپ کو گروپ میں مدعو کیا گیا تھا۔</string>
   <!--GV2 invitation revokes-->
+  <string name="MessageRecord_your_invitation_to_the_group_was_revoked">گروپ میں آپ کی دعوت منسوخ کردی گئی تھی۔</string>
   <!--GV2 invitation acceptance-->
   <!--GV2 title change-->
   <!--GV2 avatar change-->
@@ -611,6 +621,7 @@
   <string name="PinRestoreEntryFragment_enter_numeric_pin">عددی پن درج کریں</string>
   <!--PinRestoreLockedFragment-->
   <string name="PinRestoreLockedFragment_create_your_pin">اپنا پن بنائیں</string>
+  <!--PinOptOutDialog-->
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">ایپ کی درجہ بندی کریں</string>
   <string name="RatingManager_if_you_enjoy_using_this_app_please_take_a_moment">اگر آپ اس ایپ کو استعمال کرکے لطف اٹھا رہے ہیں، براہ کرم ایک لمحہ لیں جس سے درجہ بندی کرنے میں ہماری مدد ہو۔</string>
@@ -963,7 +974,6 @@
   <string name="contact_selection_activity__enter_name_or_number">نمبر یا نام داخل کریں</string>
   <string name="contact_selection_activity__invite_to_signal">Signal میں مدعو کریں</string>
   <string name="contact_selection_activity__new_group">نیا گروپ</string>
-  <!--temporary for internal testing-->
   <!--contact_filter_toolbar-->
   <string name="contact_filter_toolbar__clear_entered_text_description">داخل کیا گیا ٹیکسٹ صاف کریں</string>
   <string name="contact_filter_toolbar__show_keyboard_description">کی بورڈ دکھائیں</string>
@@ -1070,6 +1080,7 @@
     <item quantity="other">%dہفتے</item>
   </plurals>
   <string name="expiration_weeks_abbreviated">%dڈبلیو</string>
+  <string name="expiration_combined">%1$s%2$s</string>
   <!--unverified safety numbers-->
   <string name="IdentityUtil_unverified_banner_one">آپ کا حفاظتی نمبر %sکے ساتھ تبدیل ہو چکا ہے اور یہ مزید تصدیق شدہ نہیں ہے</string>
   <string name="IdentityUtil_unverified_banner_two">آپ کا حفاظتی نمبر %1$s اور %2$sکے ساتھ مزید تصدیق شدہ نہیں ہیں</string>
@@ -1350,6 +1361,7 @@
   <string name="preferences_communication__sealed_sender_allow_from_anyone">کسی سے بھی اجازت دیں</string>
   <string name="preferences_communication__sealed_sender_allow_from_anyone_description">غیر رابطوں اور ان لوگوں کی طرف سے آنے والے پیغامات کے لئے مہر بند مرسل کو اہل بنائیں جن کے ساتھ آپ نے اپنا پروفائل اشتراک نہیں کیا ہے۔</string>
   <string name="preferences_communication__sealed_sender_learn_more">مزید پڑھیں</string>
+  <!--Internal only preferences-->
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->
@@ -1494,7 +1506,6 @@
   <string name="CreateKbsPinFragment__create_a_new_pin">ایک نیا پن بنائیں</string>
   <string name="CreateKbsPinFragment__you_can_choose_a_new_pin_as_long_as_this_device_is_registered">جب تک یہ device رجسٹرڈ ہے آپ اپنا پن تبدیل کرسکتے ہیں۔</string>
   <string name="CreateKbsPinFragment__create_your_pin">اپنا پن بنائیں</string>
-  <string name="CreateKbsPinFragment__pins_keep_information_stored_with_signal_encrypted">PINs Signal کے ساتھ ذخیرہ شدہ معلومات کو خفیہ شدہ رکھتا ہے لہذا صرف آپ ہی اس تک رسائی حاصل کرسکتے ہیں۔ جب آپ Signal کو دوبارہ انسٹال کرتے ہیں تو آپ کا پروفائل ، ترتیبات اور رابطے بحال ہوجائیں گے۔</string>
   <string name="CreateKbsPinFragment__choose_a_stronger_pin">ایک مضبوط پن کا انتخاب کریں</string>
   <!--ConfirmKbsPinFragment-->
   <string name="ConfirmKbsPinFragment__pins_dont_match">پن مماثل نہیں ہیں۔ دوبارہ کوشش کریں.</string>
@@ -1505,12 +1516,12 @@
   <string name="ConfirmKbsPinFragment__creating_pin">پن بنانا…</string>
   <!--KbsSplashFragment-->
   <string name="KbsSplashFragment__introducing_pins">پن ز متعارف ہو رہے ہیں</string>
-  <string name="KbsSplashFragment__pins_keep_information_stored_with_signal_encrypted">PINs Signal کے ساتھ ذخیرہ شدہ معلومات کو خفیہ شدہ رکھتا ہے لہذا صرف آپ ہی اس تک رسائی حاصل کرسکتے ہیں۔ جب آپ Signal کو دوبارہ انسٹال کرتے ہیں تو آپ کا پروفائل ، ترتیبات اور رابطے بحال ہوجائیں گے۔</string>
   <string name="KbsSplashFragment__learn_more">مزید پڑھیں</string>
   <string name="KbsSplashFragment__registration_lock_equals_pin">رجسٹریشن لاک=پن</string>
   <string name="KbsSplashFragment__read_more_about_pins">پن کے بارے میں مزید پڑھیں</string>
   <string name="KbsSplashFragment__update_pin">پن کو اپ ڈیٹ کریں</string>
   <string name="KbsSplashFragment__create_your_pin">اپنا پن بنائیں</string>
+  <string name="KbsSplashFragment__learn_more_about_pins">پن ز کے بارے میں مزید پڑھیں</string>
   <!--KBS Reminder Dialog-->
   <string name="KbsReminderDialog__enter_your_signal_pin">اپنا Signal پن داخل کریں</string>
   <string name="KbsReminderDialog__to_help_you_memorize_your_pin">آپ کو اپنا پن حفظ کرنے میں مدد کے لیئے ، ہم آپ سے وقتا فوقتا اس میں داخل ہونے کو کہیں گے۔ وقت کے ساتھ ہم آپ سے کم پوچھتے ہیں۔</string>
@@ -1648,5 +1659,6 @@
   <string name="RecipientBottomSheet_remove">ہٹا دیں</string>
   <string name="RecipientBottomSheet_copied_to_clipboard">کلپ بورڈ کو کاپی کریں</string>
   <string name="GroupRecipientListItem_admin">ایڈمن</string>
+  <!--GroupsLearnMoreBottomSheetDialogFragment-->
   <!--EOF-->
 </resources>
