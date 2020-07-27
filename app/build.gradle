@@ -85,8 +85,8 @@ protobuf {
 }
 
 
-def canonicalVersionCode = 501
-def canonicalVersionName = "1.4.10"
+def canonicalVersionCode = 520
+def canonicalVersionName = "1.4.11"
 
 def postFixSize = 10
 def abiPostFix = ['universal'   : 0,
@@ -302,7 +302,6 @@ dependencies {
         exclude group: 'com.google.firebase', module: 'firebase-measurement-connector'
     }
 
-    implementation 'com.facebook.android:audience-network-sdk:5.9.0'
     implementation 'com.onesignal:OneSignal:[3.13.0, 3.99.99]'
 
     implementation 'com.google.android.gms:play-services-maps:16.1.0'
@@ -387,6 +386,8 @@ dependencies {
 
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+
+    implementation 'com.google.android.gms:play-services-ads:19.2.0'
 }
 
 dependencyVerification {
