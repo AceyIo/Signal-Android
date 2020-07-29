@@ -328,49 +328,48 @@ public class ConversationListFragment extends MainFragment implements ActionMode
    *
    */
   private void refreshAd() {
+    if (isAdded()) {
+      AdLoader.Builder builder = new AdLoader.Builder(getActivity(), getString(R.string.admob_native_ad_id));
 
-    AdLoader.Builder builder = new AdLoader.Builder(getActivity(), getString(R.string.admob_native_ad_id));
+      builder.forUnifiedNativeAd(new UnifiedNativeAd.OnUnifiedNativeAdLoadedListener() {
+        // OnUnifiedNativeAdLoadedListener implementation.
+        @Override
+        public void onUnifiedNativeAdLoaded(UnifiedNativeAd unifiedNativeAd) {
+          // You must call destroy on old ads when you are done with them,
+          // otherwise you will have a memory leak.
+          if (nativeAd != null) {
+            nativeAd.destroy();
+          }
+          nativeAd = unifiedNativeAd;
 
-    builder.forUnifiedNativeAd(new UnifiedNativeAd.OnUnifiedNativeAdLoadedListener() {
-      // OnUnifiedNativeAdLoadedListener implementation.
-      @Override
-      public void onUnifiedNativeAdLoaded(UnifiedNativeAd unifiedNativeAd) {
-        // You must call destroy on old ads when you are done with them,
-        // otherwise you will have a memory leak.
-        if (nativeAd != null) {
-          nativeAd.destroy();
+          UnifiedNativeAdView adView = (UnifiedNativeAdView) getLayoutInflater()
+                  .inflate(R.layout.ad_unified, null);
+          populateUnifiedNativeAdView(unifiedNativeAd, adView);
+          nativeAdPlaceholder.removeAllViews();
+          nativeAdPlaceholder.addView(adView);
         }
-        nativeAd = unifiedNativeAd;
+      });
 
-        UnifiedNativeAdView adView = (UnifiedNativeAdView) getLayoutInflater()
-                .inflate(R.layout.ad_unified, null);
-        populateUnifiedNativeAdView(unifiedNativeAd, adView);
-        nativeAdPlaceholder.removeAllViews();
-        nativeAdPlaceholder.addView(adView);
-      }
+      VideoOptions videoOptions = new VideoOptions.Builder()
+              .build();
 
-    });
+      NativeAdOptions adOptions = new NativeAdOptions.Builder()
+              .setVideoOptions(videoOptions)
+              .build();
 
-    VideoOptions videoOptions = new VideoOptions.Builder()
-            .build();
+      builder.withNativeAdOptions(adOptions);
 
-    NativeAdOptions adOptions = new NativeAdOptions.Builder()
-            .setVideoOptions(videoOptions)
-            .build();
+      AdLoader adLoader = builder.withAdListener(new AdListener() {
+        @Override
+        public void onAdFailedToLoad(int errorCode) {
 
-    builder.withNativeAdOptions(adOptions);
+//          Toast.makeText(getActivity(), "Failed to load native ad: "
+//                  + errorCode, Toast.LENGTH_SHORT).show();
+        }
+      }).build();
 
-    AdLoader adLoader = builder.withAdListener(new AdListener() {
-      @Override
-      public void onAdFailedToLoad(int errorCode) {
-
-        Toast.makeText(getActivity(), "Failed to load native ad: "
-                + errorCode, Toast.LENGTH_SHORT).show();
-      }
-    }).build();
-
-    adLoader.loadAd(new AdRequest.Builder().build());
-
+      adLoader.loadAd(new AdRequest.Builder().build());
+    }
   }
 
   @Override
