@@ -343,7 +343,7 @@ public class ConversationListFragment extends MainFragment implements ActionMode
           nativeAd = unifiedNativeAd;
 
           UnifiedNativeAdView adView = (UnifiedNativeAdView) getLayoutInflater()
-                  .inflate(R.layout.ad_unified, null);
+                  .inflate(R.layout.ad_unified, null, false);
           populateUnifiedNativeAdView(unifiedNativeAd, adView);
           nativeAdPlaceholder.removeAllViews();
           nativeAdPlaceholder.addView(adView);
