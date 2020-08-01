@@ -673,7 +673,7 @@ public class SmsDatabase extends MessagingDatabase {
 
               db.insert(TABLE_NAME, null, values);
 
-              DatabaseFactory.getThreadDatabase(context).update(threadId, true);
+              DatabaseFactory.getThreadDatabase(context).update(threadId, false);
               notifyConversationListeners(threadId);
               ApplicationDependencies.getJobManager().add(new TrimThreadJob(threadId));
             });
@@ -854,7 +854,8 @@ public class SmsDatabase extends MessagingDatabase {
     return db.query(TABLE_NAME, MESSAGE_PROJECTION, where, null, null, null, null);
   }
 
-  public SmsMessageRecord getMessage(long messageId) throws NoSuchMessageException {
+  @Override
+  public SmsMessageRecord getMessageRecord(long messageId) throws NoSuchMessageException {
     SQLiteDatabase db     = databaseHelper.getReadableDatabase();
     Cursor         cursor = db.query(TABLE_NAME, MESSAGE_PROJECTION, ID_WHERE, new String[]{messageId + ""}, null, null, null);
     Reader         reader = new Reader(cursor);
